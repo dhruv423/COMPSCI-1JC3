@@ -77,7 +77,7 @@ vecInnerProd (a,b,c) (x,y,z) = a*x + b*y + c*z
 
  -}
 vecF :: Vector -> [Vector] -> (Vector,Vector)
-vecF _ [] = error "Can't have an empty list"
+vecF _ [] = (vecZero,vecZero) -- Outputs two vecZeros in the tuple
 vecF _ [x] = (x,x) -- Outputs the single element twice in the tuple
 vecF vec1 [x,y] = if vecDist vec1 x >= vecDist vec1 y then (y,x) else (x,y) -- Figures out which is max and min and ouputs accordingly
 vecF vec1 (x:y:z:vs) -- 3 or more elements
@@ -203,6 +203,18 @@ vecDist (a,b,c) (x,y,z) = vecMagnitude (vecDiff (a,b,c) (x,y,z))
  - - Input: vecF (1,2,3) [(4,5,6),(-1,-2,-3)]
  - - Expected Output: ((4.0,5.0,6.0),(-1.0,-2.0,-3.0))
  - - Acutal Output: ((4.0,5.0,6.0),(-1.0,-2.0,-3.0))
+
+ - - Function: vecF
+ - - Test Case Number: 4
+ - - Input: vecF (45,46,47) [(47,45,46),(-47,45,46),(-46,-47,-45),(47,46,45)]
+ - - Expected Output: ((47.0,45.0,46.0),(-46.0,-47.0,-45.0))
+ - - Acutal Output: ((47.0,45.0,46.0),(-46.0,-47.0,-45.0))
+
+ - - Function: vecF
+ - - Test Case Number: 5
+ - - Input: vecF (45,46,47) []
+ - - Expected Output: ((0,0,0),(0,0,0))
+ - - Acutal Output: ((0,0,0),(0,0,0))
 
  - -----------------------------------------------------------------
  -
